@@ -64,5 +64,8 @@ app.use((error, _req, res, next) => {
     console.error("Unhandled API error");
     res.status(500).json({ error: "Something went wrong. Please try again." });
 });
-const PORT = process.env.PORT ?? 4000;
-app.listen(PORT, () => console.log(`SiliconBrains API listening on :${PORT}`));
+if (!process.env.VERCEL) {
+    const PORT = process.env.PORT ?? 4000;
+    app.listen(PORT, () => console.log(`SiliconBrains API listening on :${PORT}`));
+}
+export default app;
