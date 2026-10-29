@@ -479,7 +479,7 @@ adminRouter.use(
     table: "invoices",
     schema: schemas.invoices,
     order: { column: "created_at", ascending: false },
-    beforeWrite: (body) => {
+    beforeWrite: async (body) => {
       const items = body.line_items;
       if (!Array.isArray(items) || items.length === 0 || body.amount === undefined) return null;
       const subtotalCents = items.reduce((sum, item) => {
